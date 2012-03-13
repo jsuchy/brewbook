@@ -1,4 +1,5 @@
-require 'brew'
+require 'minitest/autorun'
+require_relative '../lib/brew'
 
 describe Brew do
   let(:required_fields) do
@@ -10,13 +11,13 @@ describe Brew do
 
   it "initializes with provided attributes" do
     brew = Brew.new("name" => "Stout", "brew_date" => "12/12/2011")
-    brew.name.should == "Stout"
-    brew.brew_date.should == "12/12/2011"
+    brew.name.must_equal "Stout"
+    brew.brew_date.must_equal "12/12/2011"
   end
 
   it "validates required fields" do
-    Brew.new(required_fields).should be_valid
-    Brew.new(required_fields.merge('name' => nil)).should_not be_valid
-    Brew.new(required_fields.merge('brew_date' => nil)).should_not be_valid
+    assert Brew.new(required_fields).valid?
+    refute Brew.new(required_fields.merge('name' => nil)).valid?
+    refute Brew.new(required_fields.merge('brew_date' => nil)).valid?
   end
 end
