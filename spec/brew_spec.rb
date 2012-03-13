@@ -3,8 +3,8 @@ require 'brew'
 describe Brew do
   let(:required_fields) do
     {
-      :name => "Pale Ale",
-      :brew_date => Time.now.strftime("%m/%d/%y")
+      "name" => "Pale Ale",
+      "brew_date" => Time.now.strftime("%m/%d/%y")
     }
   end
 
