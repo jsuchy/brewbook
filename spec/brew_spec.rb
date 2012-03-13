@@ -8,7 +8,7 @@ describe Brew do
     }
   end
 
-  it "initializes with indifferent access" do
+  it "initializes with provided attributes" do
     brew = Brew.new("name" => "Stout", "brew_date" => "12/12/2011")
     brew.name.should == "Stout"
     brew.brew_date.should == "12/12/2011"
