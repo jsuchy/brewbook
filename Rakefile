@@ -1,7 +1,9 @@
-require 'rake/testtask'
+#!/usr/bin/env rake
+# Add your own tasks in files placed in lib/tasks ending in .rake,
+# for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
-Rake::TestTask.new do |t|
-  t.pattern = "spec/*_spec.rb"
-end
+require File.expand_path('../config/application', __FILE__)
 
-task :default => :test
+Brewery::Application.load_tasks
+
+task :default => [:spec, :cucumber, :"jasmine:ci"]
