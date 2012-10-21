@@ -6,4 +6,4 @@ require File.expand_path('../config/application', __FILE__)
 
 Brewery::Application.load_tasks
 
-task :default => [:spec, :cucumber, :"jasmine:ci"]
+task :default => [:spec, :"jasmine:ci", :cucumber]
