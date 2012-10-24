@@ -18,4 +18,3 @@
 //= require_self
 //= require brewery
 Brewery = Ember.Application.create();
-//= require_tree .

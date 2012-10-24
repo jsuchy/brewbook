@@ -1,4 +1,5 @@
 Brewery::Application.routes.draw do
+  root :to => "application#show"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
