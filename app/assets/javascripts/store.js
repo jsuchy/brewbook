@@ -1,5 +1,6 @@
-Brewery.Store = DS.Store.extend({
-  revision: 4,
-  adapter: DS.RESTAdapter.create()
+Brewery.store = DS.Store.create({
+  revision: 6,
+  adapter: DS.RESTAdapter.create(),
+  bulkCommit: false
 });
 

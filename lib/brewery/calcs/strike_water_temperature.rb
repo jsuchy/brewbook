@@ -5,8 +5,8 @@ module Brewery
       INITIAL_TEMPERATURE = 72 # degrees Fahrenheit 
 
       def initialize(target_temp, ratio)
-        @target_temp = target_temp
-        @ratio = ratio
+        @target_temp = target_temp.to_f
+        @ratio = ratio.to_f
       end
 
       def execute

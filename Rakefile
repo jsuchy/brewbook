@@ -6,4 +6,7 @@ require File.expand_path('../config/application', __FILE__)
 
 Brewery::Application.load_tasks
 
-task :default => [:spec, :"jasmine:ci", :cucumber]
+require 'guard/jasmine/task'
+Guard::JasmineTask.new
+
+task :default => [:spec, :"guard:jasmine", :cucumber]

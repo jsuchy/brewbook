@@ -23,6 +23,7 @@ group :test, :development do
   # gem 'database_cleaner'
   gem 'rspec-rails', "~> 2.0"
   gem 'capybara'
-  gem 'jasmine'
+  gem 'guard-jasmine'
+  gem 'jasminerice'
   gem 'simplecov', :require => false
 end

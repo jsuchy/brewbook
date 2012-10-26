@@ -1,4 +1,8 @@
 Brewery::Application.routes.draw do
+  resources :grains
+  resources :weighted_grains
+  resources :recipes
+
   root :to => "application#show"
   # The priority is based upon order of creation:
   # first created -> highest priority.
