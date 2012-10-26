@@ -12,16 +12,30 @@ module Brewery
 
     attr_reader :name, :water_to_grist, :target_temperature, :strike_water_temperature, :mash_water_volume, :id
 
+    attr_writer :grain_repo
+
     def initialize(name, water_to_grist, target_temperature)
       @name = name
       @water_to_grist = water_to_grist
       @target_temperature = target_temperature
+      @grain_repo = Brewery::WeightedGrainRepo
       calculate_strike_water_temperature
     end
 
     def id=(id)
       @id = id
       calculate_mash_water_volume
+    end
+
+    def weighted_grains
+      return [] unless id
+      @grain_repo.all.select do |grain|
+        grain.recipe_id.to_i == id.to_i
+      end
+    end
+
+    def as_json(options = {})
+      {:id => id, name: name, water_to_grist: water_to_grist, target_temperature: target_temperature, strike_water_temperature: strike_water_temperature, mash_water_volume: mash_water_volume}
     end
 
     private
@@ -36,13 +50,11 @@ module Brewery
       return unless id
       total_pounds = _total_pounds
       return unless total_pounds.to_i > 0 && water_to_grist
-      @mash_water_volume = Brewery::Calc::MashWaterVolume.new(_total_pounds, water_to_grist.to_f).execute
+      @mash_water_volume = Brewery::Calc::MashWaterVolume.new(total_pounds, water_to_grist.to_f).execute
     end
 
     def _total_pounds
-      Brewery::Repo::WeightedGrain.all.select do |grain|
-        grain.recipe_id.to_i == id.to_i
-      end.map(&:weight).map(&:to_f).reduce(:+)
+      weighted_grains.map(&:weight).map(&:to_f).reduce(:+)
     end
 
   end

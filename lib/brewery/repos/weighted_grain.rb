@@ -2,26 +2,27 @@ module Brewery
   module Repo
     class WeightedGrain
 
-      @@weighted_grains = []
-
-      def self.find(id)
-        @@weighted_grains[id.to_i-1]
+      def initialize
+        @weighted_grains = []
       end
 
-      def self.all
-        @@weighted_grains
+      def find(id)
+        @weighted_grains[id.to_i-1]
       end
 
-      def initialize(weighted_grain)
-        @weighted_grain = weighted_grain
+      def all
+        @weighted_grains
       end
 
-      def save
-        @weighted_grain.id = @@weighted_grains.size + 1
-        @@weighted_grains << @weighted_grain
-        @weighted_grain
+      def save(weighted_grain)
+        weighted_grain.id = @weighted_grains.size + 1
+        @weighted_grains << weighted_grain
+        weighted_grain
       end
 
     end
   end
+
+  WeightedGrainRepo = Repo::WeightedGrain.new
+
 end

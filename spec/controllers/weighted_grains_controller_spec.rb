@@ -1,12 +1,18 @@
 require 'spec_helper'
 
 describe WeightedGrainsController do
+  before do
+    @grain_repo = Brewery::Repo::WeightedGrain.new
+  end
+  
   describe "GET show" do
     before do
-      @grain = Brewery::Repo::WeightedGrain.new(Brewery::WeightedGrain.new(10, 1, 2)).save
+      @grain = @grain_repo.save(Brewery::WeightedGrain.new(10, 1, 2))
     end
+
     describe "the response" do
       before do
+        controller.grain_repo = @grain_repo
         get :show, :id => @grain.id, :format => :json
         @body = JSON.parse(response.body)
       end
@@ -31,6 +37,7 @@ describe WeightedGrainsController do
 
   describe "POST create" do
     it "gives a non-empty json response" do
+      controller.grain_repo = @grain_repo
       post :create, :weighted_grain => {:weight => 10, :grain_id => "1", :recipe_id => "2"}, :format => :json
 
       response.body.should_not be_empty

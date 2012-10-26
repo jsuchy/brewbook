@@ -1,15 +1,29 @@
 require 'spec_helper'
+require 'brewery/repos/weighted_grain'
 
 describe RecipesController do
+
+  before do
+    @recipe_repo = Brewery::Repo::Recipe.new
+    @grain_repo = Brewery::Repo::WeightedGrain.new
+  end
 
   describe "GET show" do
     before do
       Brewery::Calc::StrikeWaterTemperature.any_instance.should_receive(:execute).and_return(10)
       Brewery::Calc::MashWaterVolume.any_instance.stub(:execute).and_return(20)
-      @recipe = Brewery::Repo::Recipe.new(Brewery::Recipe.new("Pale Ale", 1.4, 152)).save
+
+      grains = [mock("WeightedGrain", :weight => 9, :recipe_id => 1, :as_json => {:weight => 9, :recipe_id => 1})]
+      @grain_repo.stub(:all).and_return(grains)
+      recipe = Brewery::Recipe.new("Pale Ale", 1.4, 152)
+      recipe.grain_repo = @grain_repo
+
+      @recipe = @recipe_repo.save(recipe)
     end
+
     describe "the response" do
       before do
+        controller.recipe_repo = @recipe_repo
         get :show, :id => @recipe.id, :format => :json
         @body = JSON.parse(response.body)
       end
@@ -33,6 +47,10 @@ describe RecipesController do
       it "has a stike water temperature" do
         @body['recipe']['strike_water_temperature'].should == 10
       end
+
+      it "has the assocated weighted grains" do
+        @body['weighted_grains'][0]['weight'].should == 9
+      end
     end
   end
 
@@ -41,6 +59,7 @@ describe RecipesController do
       before do
         Brewery::Calc::StrikeWaterTemperature.any_instance.stub(:execute).and_return(10)
         Brewery::Calc::MashWaterVolume.any_instance.stub(:execute).and_return(20)
+        controller.recipe_repo = @recipe_repo
         post :create, :recipe => {:name => "Brown Ale", :water_to_grist => 1.5, :target_temperature => 152}, :format => :json
         @body = JSON.parse(response.body)
       end
@@ -74,10 +93,11 @@ describe RecipesController do
   describe "PUT update" do
     before do
       Brewery::Calc::MashWaterVolume.any_instance.stub(:execute).and_return(20)
-      @recipe = Brewery::Repo::Recipe.new(Brewery::Recipe.new("Pale Ale", 1.5, 152)).save
+      @recipe = @recipe_repo.save(Brewery::Recipe.new("Pale Ale", 1.5, 152))
     end
     describe "the response" do
       before do
+        controller.recipe_repo = @recipe_repo
         put :update, :id => @recipe.id, :recipe => {:name => "Brown Ale", :water_to_grist => 2.0, :target_temperature => 152}, :format => :json
         @body = JSON.parse(response.body)
       end
