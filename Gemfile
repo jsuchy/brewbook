@@ -1,14 +1,12 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
-
-gem 'sqlite3'
+gem 'ember-rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
-  gem 'ember-rails', :git => "https://github.com/NOX73/ember-rails.git"
 end
 
 gem 'jquery-rails'
