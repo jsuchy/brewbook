@@ -17,6 +17,15 @@ describe Brewery::Calc::StrikeWaterTemperature do
         @result.should == 162
       end
     end
+  end
 
+  context "with string inputs of 154 and 2.0" do
+    before do
+      @result = Brewery::Calc::StrikeWaterTemperature.new("154", "2.0").execute
+    end
+
+    it "gives a rounded result of 162" do
+      @result.should == 162
+    end
   end
 end

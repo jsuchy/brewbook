@@ -17,7 +17,7 @@ Given /^a water to grist ratio of (\d*\.?\d+)$/ do |ratio|
 end
 
 When /^the strike water calculations are done$/ do
-  @result = Brewery::UseCase::CalculateStrikeTemperatureAndVolume.new(@pounds, @ounces, @target_temp, @ratio).execute
+  @result = Brewery::UseCase::CalculateStrikeTemperatureAndVolume.new(@pounds, (@ounces || 0), @target_temp, @ratio).execute
 end
 
 Then /^the strike water temperature is (\d*\.?\d+)$/ do |temp|
