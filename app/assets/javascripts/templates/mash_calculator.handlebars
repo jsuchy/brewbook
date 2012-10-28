@@ -1,0 +1,40 @@
+<h2>Mash Calculator</h2>
+
+<div class="control-group">
+  <label class="control-label">Mash Temperature</label>
+  <div class="controls">
+    {{view Ember.TextField valueBinding="mashTemperature" class="input-mini"}}
+  </div>
+
+  <label class="control-label">Water to Grist Ratio</label>
+  <div class="controls">
+    {{view Ember.TextField valueBinding="waterToGrist" class="input-mini"}}
+  </div>
+</div>
+
+<div class="control-group">
+  <label class="control-label">Total Pounds</label>
+  <div class="controls">
+    {{view Ember.TextField valueBinding="pounds" class="input-mini"}}
+  </div>
+
+  <label class="control-label">Total Ounces</label>
+  <div class="controls">
+    {{view Ember.TextField valueBinding="ounces" class="input-mini"}}
+  </div>
+</div>
+
+<div class="control-group">
+  <div class="controls">
+    <button type="submit" class="btn">Calculate</button>
+  </div>
+</div>
+
+<div class="result">
+  <span>Strike Temperature:</span>{{strikeTemperature}}
+</div>
+
+<div class="result">
+  <span>Mash Water Volume:</span>{{waterVolume}}
+</div>
+
