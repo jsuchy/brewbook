@@ -1,5 +1,4 @@
-require 'brewery/calcs/strike_water_temperature'
-require 'brewery/calcs/mash_water_volume'
+require 'brewery/use_cases/calculate_strike_temperature_and_volume'
 
 Given /^I have a recipe that calls for (\d*\.?\d+) pounds of grain$/ do |pounds|
   @pounds = pounds.to_f
@@ -14,13 +13,13 @@ Given /^a water to grist ratio of (\d*\.?\d+)$/ do |ratio|
 end
 
 When /^the strike water calculations are done$/ do
-  @strike_water_temperature = Brewery::Calc::StrikeWaterTemperature.new(@target_temp, @ratio).execute
+  @result = Brewery::UseCase::CalculateStrikeTemperatureAndVolume.new(@pounds, @target_temp, @ratio).execute
 end
 
 Then /^the strike water temperature is (\d*\.?\d+)$/ do |temp|
-  @strike_water_temperature.should == temp.to_f
+  @result[:strike_water_temperature].should == temp.to_f
 end
 
 Then /^the water volume needed is (\d*\.?\d+)$/ do |volume|
-  Brewery::Calc::MashWaterVolume.new(@pounds, @ratio).execute.should == volume.to_f
+  @result[:mash_water_volume].should == volume.to_f
 end
