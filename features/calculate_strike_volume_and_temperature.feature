@@ -4,7 +4,7 @@ Feature: Calculate strike volume and temperature
   I want the system to calculate the strike temperature and volume
 
   Scenario: 15.25 pounds of grain with a 1.75 water to grist ratio
-    Given I have a recipe that calls for 15.25 pounds of grain
+    Given I need 15.25 pounds of grain
     And a target mash temperature of 154
     And a water to grist ratio of 1.75
     When the strike water calculations are done
@@ -12,7 +12,16 @@ Feature: Calculate strike volume and temperature
     And the water volume needed is 26.7
 
   Scenario: 10 pounds of grain with a 2.0 water to grist ratio
-    Given I have a recipe that calls for 10 pounds of grain
+    Given I need 10 pounds of grain
+    And a target mash temperature of 154
+    And a water to grist ratio of 2.0
+    When the strike water calculations are done
+    Then the strike water temperature is 162
+    And the water volume needed is 20
+
+  Scenario: 9 pounds 16 ounces of grain with a 2.0 water to grist ratio
+    Given I need 9 pounds of grain
+    And I need 16 ounces of grain
     And a target mash temperature of 154
     And a water to grist ratio of 2.0
     When the strike water calculations are done

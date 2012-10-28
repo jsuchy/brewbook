@@ -30,4 +30,14 @@ describe Brewery::Calc::MashWaterVolume do
 
   end
 
+  context "with string inputs of 2.5 and 2.5" do
+    before do
+      @result = Brewery::Calc::MashWaterVolume.new("2.5", "2.5").execute
+    end
+
+    it "gives a rounded result of 6.3" do
+      @result.should == 6.3
+    end
+  end
+
 end

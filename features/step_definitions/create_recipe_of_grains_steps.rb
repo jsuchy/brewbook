@@ -1,7 +1,11 @@
 require 'brewery/use_cases/calculate_strike_temperature_and_volume'
 
-Given /^I have a recipe that calls for (\d*\.?\d+) pounds of grain$/ do |pounds|
+Given /^I need (\d*\.?\d+) pounds of grain$/ do |pounds|
   @pounds = pounds.to_f
+end
+
+Given /^I need (\d*\.?\d+) ounces of grain$/ do |ounces|
+  @ounces = ounces.to_f
 end
 
 Given /^a target mash temperature of (\d+)$/ do |temp|
@@ -13,7 +17,7 @@ Given /^a water to grist ratio of (\d*\.?\d+)$/ do |ratio|
 end
 
 When /^the strike water calculations are done$/ do
-  @result = Brewery::UseCase::CalculateStrikeTemperatureAndVolume.new(@pounds, @target_temp, @ratio).execute
+  @result = Brewery::UseCase::CalculateStrikeTemperatureAndVolume.new(@pounds, @ounces, @target_temp, @ratio).execute
 end
 
 Then /^the strike water temperature is (\d*\.?\d+)$/ do |temp|

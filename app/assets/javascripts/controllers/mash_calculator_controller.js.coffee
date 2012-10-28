@@ -4,7 +4,6 @@ Brewery.MashCalculatorController = Ember.ObjectController.extend
     @set 'content', Brewery.MashCalculator.create(waterToGrist: 1.5)
 
   calculate: ->
-    $.post "/mash_calculator", @get('content').serialize(), (data) =>
-      json = JSON.parse(data)
-      @set('strikeTemperature', json.strike_temperature)
-      @set('waterVolume', json.water_volume)
+    $.post "/calculate/strike_water_temperature_and_volume", @get('content').serialize(), (data) =>
+      @set('strikeTemperature', data.strike_water_temperature)
+      @set('waterVolume', data.mash_water_volume)

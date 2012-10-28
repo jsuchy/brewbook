@@ -3,8 +3,8 @@ module Brewery
     class MashWaterVolume
 
       def initialize(pounds, ratio)
-        @pounds = pounds
-        @ratio = ratio
+        @pounds = pounds.to_f
+        @ratio = ratio.to_f
       end
 
       def execute
