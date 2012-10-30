@@ -4,7 +4,6 @@ require 'brewery/calcs/mash_water_volume'
 module Brewery
   module UseCase
     class CalculateStrikeTemperatureAndVolume
-      NUMBER_REGEX = /^\d*\.?\d+$/
 
       def initialize(pounds, ounces, mash_temperature, ratio)
         @pounds = pounds
@@ -35,22 +34,31 @@ module Brewery
       def _validate_number
         valid = true
         [:pounds, :ounces, :mash_temperature, :ratio].each do |attr|
-          unless NUMBER_REGEX === _get_attr(attr).to_s
+          begin 
+            Float(_get_attr(attr)) 
+          rescue
             valid = false
-            @errors[attr] = "is not a valid number."
+            _add_error(attr, "is not a valid number.")
           end
         end
         valid
       end
 
       def _validate_mash_temperature
-        mash_temperature = _get_attr(:mash_temperature).to_f
-        if mash_temperature > 212
-          @errors[:mash_temperature] = "can not be greater than 212."
+        mash_temperature = @mash_temperature.to_f
+        if mash_temperature > 200
+          _add_error(:mash_temperature, "can not be greater than 200.")
+          return false
+        elsif mash_temperature < 100
+          _add_error(:mash_temperature, "can not be less than 100.")
           return false
         end
 
         true
+      end
+
+      def _add_error(attr, message)
+        @errors[attr] ||= message
       end
 
       def _get_attr(attr)
