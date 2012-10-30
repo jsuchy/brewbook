@@ -27,7 +27,7 @@ describe "Controllers", ->
 
         beforeEach ->
           spyOn($, "post").andCallFake (location, data, cb) ->
-            cb({valid: false, errors: {pounds: msg, ounces: msg, target_temp: msg, ratio: msg}})
+            cb({valid: false, errors: {pounds: msg, ounces: msg, mash_temperature: msg, ratio: msg}})
           controller.calculate()
 
         it "sets the correct error variables", ->

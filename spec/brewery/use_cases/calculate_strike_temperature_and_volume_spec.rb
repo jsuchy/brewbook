@@ -46,10 +46,42 @@ describe Brewery::UseCase::CalculateStrikeTemperatureAndVolume do
 
         describe "errors hash" do
           let(:errors_hash) { result_hash[:errors] }
-          [:pounds, :ounces, :target_temp, :ratio].each do |attr|
+          [:pounds, :ounces, :mash_temperature, :ratio].each do |attr|
             it "has an error for #{attr}" do
               errors_hash[attr].should == 'is not a valid number.'
             end
+          end
+        end
+      end
+    end
+
+    context "when the target temp is over 212 degrees" do
+      let(:use_case) { Brewery::UseCase::CalculateStrikeTemperatureAndVolume.new(1, 2, 213, 1.4) }
+      describe "the result hash" do
+        let(:result_hash) { use_case.execute }
+
+        it "valid attribute is false" do
+          result_hash[:valid].should == false
+        end
+
+        describe "errors hash" do
+          let(:errors_hash) { result_hash[:errors] }
+          it "has an error for mash_temperature" do
+            errors_hash[:mash_temperature].should == 'can not be greater than 212.'
+          end
+        end
+
+      end
+    end
+
+    context "when the mash tempurature is over 212 degrees and there is no pounds" do
+      let(:use_case) { Brewery::UseCase::CalculateStrikeTemperatureAndVolume.new(nil, 2, 213, 1.4) }
+      describe "the results hash" do
+        describe "errors hash" do
+          let(:errors_hash) { use_case.execute[:errors] }
+          it "has an error for BOTH the mash tempurature and pounds" do
+            errors_hash[:mash_temperature].should == 'can not be greater than 212.'
+            errors_hash[:pounds].should == 'is not a valid number.'
           end
         end
       end

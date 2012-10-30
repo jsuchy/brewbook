@@ -6,10 +6,10 @@ module Brewery
     class CalculateStrikeTemperatureAndVolume
       NUMBER_REGEX = /^\d*\.?\d+$/
 
-      def initialize(pounds, ounces, target_temp, ratio)
+      def initialize(pounds, ounces, mash_temperature, ratio)
         @pounds = pounds
         @ounces = ounces
-        @target_temp = target_temp
+        @mash_temperature = mash_temperature
         @ratio = ratio
         @errors = {}
       end
@@ -26,17 +26,31 @@ module Brewery
 
       private
 
-      attr_reader :pounds, :target_temp, :ratio
+      attr_reader :pounds, :mash_temperature, :ratio
 
       def _valid?
+        _validate_number & _validate_mash_temperature
+      end
+
+      def _validate_number
         valid = true
-        [:pounds, :ounces, :target_temp, :ratio].each do |attr|
+        [:pounds, :ounces, :mash_temperature, :ratio].each do |attr|
           unless NUMBER_REGEX === _get_attr(attr).to_s
             valid = false
             @errors[attr] = "is not a valid number."
           end
         end
         valid
+      end
+
+      def _validate_mash_temperature
+        mash_temperature = _get_attr(:mash_temperature).to_f
+        if mash_temperature > 212
+          @errors[:mash_temperature] = "can not be greater than 212."
+          return false
+        end
+
+        true
       end
 
       def _get_attr(attr)
@@ -51,7 +65,7 @@ module Brewery
       end
 
       def _calc_strike_temp
-        Brewery::Calc::StrikeWaterTemperature.new(target_temp, ratio).execute
+        Brewery::Calc::StrikeWaterTemperature.new(mash_temperature, ratio).execute
       end
 
       def _calc_water_volume
