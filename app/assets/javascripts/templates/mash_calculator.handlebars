@@ -3,7 +3,10 @@
 <div class="control-group" {{bindAttr class="mashTemperatureError:error"}}>
   <label class="control-label">Mash Temperature</label>
   <div class="controls">
-    {{view Ember.TextField valueBinding="mashTemperature" class="input-mini"}}
+    <div class="input-append">
+      {{view Ember.TextField valueBinding="mashTemperature" class="input-mini"}}
+      <span class="add-on">&deg;F</span>
+    </div>
     <span class="help-inline">{{mashTemperatureError}}</span>
   </div>
 </div>
@@ -11,7 +14,10 @@
 <div class="control-group" {{bindAttr class="waterToGristError:error"}}>
   <label class="control-label">Water to Grist Ratio</label>
   <div class="controls">
-    {{view Ember.TextField valueBinding="waterToGrist" class="input-mini"}}
+    <div class="input-append">
+      {{view Ember.TextField valueBinding="waterToGrist" class="input-mini"}}
+      <span class="add-on">pounds/quart</span>
+    </div>
     <span class="help-inline">{{waterToGristError}}</span>
   </div>
 </div>
