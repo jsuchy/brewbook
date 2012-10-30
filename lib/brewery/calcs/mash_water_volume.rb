@@ -8,7 +8,7 @@ module Brewery
       end
 
       def execute
-        @result ||= _calc_mash_water_volume.round(1)
+        @result ||= _round_to_tenth(_calc_mash_water_volume)
       end
 
       private 
@@ -17,6 +17,10 @@ module Brewery
 
       def _calc_mash_water_volume
         pounds * ratio
+      end
+
+      def _round_to_tenth(number)
+        (number.to_f * 10).round / 10.0
       end
 
     end

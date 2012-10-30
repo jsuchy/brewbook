@@ -7,7 +7,7 @@ describe CalculateController do
 
   describe "#strike_water_temperature_and_volume" do
     before do
-      @result = {strike_temperature: 10, mash_water_volume: 5}
+      @result = {:strike_temperature => 10, :mash_water_volume => 5}
       controller.stub(:params).
         and_return({:pounds => 1, :ounces => 2, :mashTemperature => 3, :waterToGrist => 4})
 
