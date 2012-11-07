@@ -47,10 +47,10 @@ module Brewery
       def _validate_mash_temperature
         mash_temperature = @mash_temperature.to_f
         if mash_temperature > 200
-          _add_error(:mash_temperature, "can not be greater than 200.")
+          _add_error(:mash_temperature, "cannot be greater than 200.")
           return false
         elsif mash_temperature < 100
-          _add_error(:mash_temperature, "can not be less than 100.")
+          _add_error(:mash_temperature, "cannot be less than 100.")
           return false
         end
 
@@ -73,11 +73,11 @@ module Brewery
       end
 
       def _calc_strike_temp
-        Brewery::Calc::StrikeWaterTemperature.new(mash_temperature, ratio).execute
+        Brewery::Calc::StrikeWaterTemperature.new(mash_temperature, ratio).calculate
       end
 
       def _calc_water_volume
-        Brewery::Calc::MashWaterVolume.new(_total_weight, ratio).execute
+        Brewery::Calc::MashWaterVolume.new(_total_weight, ratio).calculate
       end
 
       def _total_weight

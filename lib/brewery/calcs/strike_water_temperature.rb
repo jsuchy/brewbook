@@ -9,7 +9,7 @@ module Brewery
         @ratio = ratio.to_f
       end
 
-      def execute
+      def calculate
         @result ||= _calculate_strike_temperature.round
       end
 

@@ -7,7 +7,7 @@ module Brewery
         @ratio = ratio.to_f
       end
 
-      def execute
+      def calculate
         @result ||= _round_to_tenth(_calc_mash_water_volume)
       end
 

@@ -9,7 +9,7 @@ describe Brewery::Calc::MashWaterVolume do
     end
 
     it "calculates water volume to be 40.0" do
-      @mash_water_volume_calc.execute.should == 40.0
+      @mash_water_volume_calc.calculate.should == 40.0
     end
   end
 
@@ -20,7 +20,7 @@ describe Brewery::Calc::MashWaterVolume do
 
     describe "the result of 26.6875" do
       before do
-        @result = @mash_water_volume_calc.execute
+        @result = @mash_water_volume_calc.calculate
       end
 
       it "is rounded up to 26.7" do
@@ -32,7 +32,7 @@ describe Brewery::Calc::MashWaterVolume do
 
   context "with string inputs of 2.5 and 2.5" do
     before do
-      @result = Brewery::Calc::MashWaterVolume.new("2.5", "2.5").execute
+      @result = Brewery::Calc::MashWaterVolume.new("2.5", "2.5").calculate
     end
 
     it "gives a rounded result of 6.3" do

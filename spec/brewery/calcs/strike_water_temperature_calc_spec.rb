@@ -10,7 +10,7 @@ describe Brewery::Calc::StrikeWaterTemperature do
 
     describe "the result of 162.2" do
       before do
-        @result = @strike_water_calc.execute
+        @result = @strike_water_calc.calculate
       end
 
       it "rounds down to 162" do
@@ -21,7 +21,7 @@ describe Brewery::Calc::StrikeWaterTemperature do
 
   context "with string inputs of 154 and 2.0" do
     before do
-      @result = Brewery::Calc::StrikeWaterTemperature.new("154", "2.0").execute
+      @result = Brewery::Calc::StrikeWaterTemperature.new("154", "2.0").calculate
     end
 
     it "gives a rounded result of 162" do

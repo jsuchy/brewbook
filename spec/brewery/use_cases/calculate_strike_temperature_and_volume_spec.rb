@@ -67,7 +67,7 @@ describe Brewery::UseCase::CalculateStrikeTemperatureAndVolume do
         describe "errors hash" do
           let(:errors_hash) { result_hash[:errors] }
           it "has an error for mash_temperature" do
-            errors_hash[:mash_temperature].should == 'can not be greater than 200.'
+            errors_hash[:mash_temperature].should == 'cannot be greater than 200.'
           end
         end
       end
@@ -85,7 +85,7 @@ describe Brewery::UseCase::CalculateStrikeTemperatureAndVolume do
         describe "errors hash" do
           let(:errors_hash) { result_hash[:errors] }
           it "has an error for mash_temperature" do
-            errors_hash[:mash_temperature].should == 'can not be less than 100.'
+            errors_hash[:mash_temperature].should == 'cannot be less than 100.'
           end
         end
       end
@@ -97,7 +97,7 @@ describe Brewery::UseCase::CalculateStrikeTemperatureAndVolume do
         describe "errors hash" do
           let(:errors_hash) { use_case.execute[:errors] }
           it "has an error for BOTH the mash tempurature and pounds" do
-            errors_hash[:mash_temperature].should == 'can not be greater than 200.'
+            errors_hash[:mash_temperature].should == 'cannot be greater than 200.'
             errors_hash[:pounds].should == 'is not a valid number.'
           end
         end
