@@ -12,9 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require handlebars
-//= require ember
-//= require ember-data-latest
+//= require calculate
 //= require_self
-//= require brewery
-Brewery = Ember.Application.create();

@@ -5,6 +5,13 @@ require 'calculate_controller'
 describe CalculateController do
   let(:controller) { CalculateController.new }
 
+  describe "#show" do
+    it "displays the :show template" do
+      get :show
+      expect(response).to render_template(:show)
+    end
+  end
+
   describe "#strike_water_temperature_and_volume" do
     before do
       @params = {:pounds => 1, :ounces => 2, :mashTemperature => 3, :waterToGrist => 4}
