@@ -11,4 +11,4 @@ unless Rails.env.production?
   Guard::JasmineTask.new
 end
 
-task :default => [:spec, :"guard:jasmine", :cucumber]
+task :default => [:spec, :"cucumber:progress", :"guard:jasmine"]

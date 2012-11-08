@@ -32,6 +32,13 @@ begin
       t.profile = 'rerun'
     end
 
+    Cucumber::Rake::Task.new({:progress => 'db:test:prepare'}, "Run features with progress format") do |t|
+      t.cucumber_opts = "--format progress"
+      t.binary = vendored_cucumber_bin # If nil, the gem's binary is used.
+      t.fork = true # You may get faster startup if you set this to false
+      t.profile = 'default'
+    end
+
     desc 'Run all features'
     task :all => [:ok, :wip]
 
@@ -44,7 +51,7 @@ begin
   desc 'Alias for cucumber:ok'
   task :cucumber => 'cucumber:ok'
 
-  task :default => :cucumber
+  task :default => "cucumber:progress"
 
   task :features => :cucumber do
     STDERR.puts "*** The 'features' task is deprecated. See rake -T cucumber ***"
