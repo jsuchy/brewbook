@@ -8,6 +8,8 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'data_mapper'
+
 gem 'jquery-rails'
 
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -16,6 +18,7 @@ gem 'jquery-rails'
 # gem 'jbuilder'
 
 group :test, :development do
+  gem 'dm-sqlite-adapter'
   gem 'cucumber-rails', :require => false
   # gem 'database_cleaner'
   gem 'rspec-rails', "~> 2.0"
