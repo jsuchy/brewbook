@@ -3,7 +3,7 @@ module Interface
 end
 
 shared_examples_for Interface::WeightedGrain do |host|
-  [:name, :weight].each do |attr|
+  [:id, :name, :weight].each do |attr|
     it "responds to #{attr}" do
       host.should respond_to(attr)
     end

@@ -4,6 +4,7 @@ module Record
   class Recipe
     include DataMapper::Resource
 
+    property :id, Serial
     property :name, String
     property :fermentation_instructions, String
     property :mash_time, Integer
