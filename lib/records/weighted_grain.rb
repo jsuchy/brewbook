@@ -7,5 +7,7 @@ module Record
     property :id, Serial
     property :name, String
     property :weight, Float, :default => 0
+
+    belongs_to :recipe, 'Record::Recipe', :key => true
   end
 end

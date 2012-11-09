@@ -8,5 +8,7 @@ module Record
     property :name, String
     property :weight, Float, :default => 0
     property :boil_duration, Integer
+
+    belongs_to :recipe, 'Record::Recipe', :key => true
   end
 end

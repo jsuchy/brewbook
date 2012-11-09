@@ -11,8 +11,8 @@ module Record
     property :yeast, String
     property :yeast_amount, String
 
-    has n, :hops
-    has n, :grains
+    has n, :hops, 'Record::Hop'
+    has n, :grains, 'Record::WeightedGrain'
 
     def mash_temp
 

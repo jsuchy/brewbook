@@ -5,6 +5,10 @@ SimpleCov.start 'rails'
 ENV["RAILS_ENV"] ||= 'test'
 require 'rspec/autorun'
 
+require 'dm-core'
+require 'dm-migrations'
+DataMapper.setup(:default, 'sqlite::memory:')
+
 APP_ROOT = File.expand_path(File.join(File.dirname(__FILE__), ".."))
 
 $: << APP_ROOT+"/lib"
@@ -34,5 +38,6 @@ RSpec.configure do |config|
   # order dependency and want to debug it, you can fix the order by providing
   # the seed, which is printed after each run.
   #     --seed 1234
+  config.before(:each) { DataMapper.auto_migrate! }
   config.order = "random"
 end
