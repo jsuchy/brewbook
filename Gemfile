@@ -8,7 +8,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'data_mapper'
+gem 'data_mapper', "~> 1.2.0"
 
 gem 'jquery-rails'
 
