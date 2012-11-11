@@ -1,66 +1,7 @@
 <div class="mash-calculator page">
   <h2>Mash Calculator</h2>
 
+  <%= render "strike_calc_form" %>
 
-  <%= form_tag(calculate_strike_water_temperature_and_volume_path, :remote => true, :class => "form-horizontal") do %>
-    <div id="mashTemperatureControlGroup" class="control-group">
-      <label class="control-label">Mash Temperature</label>
-      <div class="controls">
-        <div class="input-append">
-          <input type="text" id="mashTemperature" name="mashTemperature" class="input-mini" />
-          <span class="add-on">&deg;F</span>
-        </div>
-        <span class="help-inline"></span>
-      </div>
-    </div>
-
-    <div id="waterToGristControlGroup" class="control-group">
-      <label class="control-label">Water to Grist Ratio</label>
-      <div class="controls">
-        <div class="input-append">
-          <input type="text" id="waterToGrist" name="waterToGrist" class="input-mini" />
-          <span class="add-on">quarts/pound</span>
-        </div>
-        <span class="help-inline"></span>
-      </div>
-    </div>
-
-    <div id="poundsControlGroup" class="control-group">
-      <label class="control-label">Total Pounds</label>
-      <div class="controls">
-        <input type="text" id="pounds" name="pounds" class="input-mini" />
-        <span class="help-inline"></span>
-      </div>
-    </div>
-
-    <div id="ouncesControlGroup" class="control-group">
-      <label class="control-label">Total Ounces</label>
-      <div class="controls">
-        <input type="text" id="ounces" name="ounces" class="input-mini" />
-        <span class="help-inline"></span>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <div class="controls">
-        <button type="submit" class="btn">Calculate</button>
-      </div>
-    </div>
-
-    <div class="row-fluid">
-      <div class="span3">
-        <table class="table table-bordered">
-          <tr>
-            <th>Strike Temperature</th>
-            <td><span id="strikeTemperatureResult"></span>&deg;F</td>
-          </tr>
-
-          <tr>
-            <th>Mash Water Volume</th>
-            <td><span id="waterVolumeResult"></span> Quarts</td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  <% end %>
+  <%= render "strike_calc_results" %>
 </div>

@@ -1,0 +1,23 @@
+<%= form_tag(calculate_strike_water_temperature_and_volume_path, :remote => true, :class => "form-horizontal") do %>
+  <%= control_group(:id => "mashTemperatureControlGroup", 
+                    :label => "Mash Temperature", :name => "mashTemperature", 
+                    :addon => "&deg;F") %>
+
+  <%= control_group(:id => "waterToGristControlGroup", 
+                    :label => "Water To Grist Ratio", :name => "waterToGrist", 
+                    :addon => "quarts/pound") %>
+
+  <%= control_group(:id => "poundsControlGroup", 
+                    :label => "Total Pounds", :name => "pounds") %>
+
+  <%= control_group(:id => "ouncesControlGroup", 
+                    :label => "Total Ounces", :name => "ounces") %>
+
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn">Calculate</button>
+    </div>
+  </div>
+
+<% end %>
+
