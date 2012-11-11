@@ -1,6 +1,6 @@
 require 'dm-core'
 
-module Record
+module Records
   class Recipe
     include DataMapper::Resource
 
@@ -11,8 +11,8 @@ module Record
     property :yeast, String
     property :yeast_amount, String
 
-    has n, :hops, 'Record::Hop'
-    has n, :grains, 'Record::WeightedGrain'
+    has n, :hops, 'Records::Hop'
+    has n, :grains, 'Records::WeightedGrain'
 
     def mash_temp
 

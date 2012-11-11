@@ -1,6 +1,6 @@
 Brewery::Application.routes.draw do
+  resources :recipes, :only => [:new]
   match "calculate/strike_water_temperature_and_volume" => 'calculate#strike_water_temperature_and_volume'
-
   root :to => "calculate#show"
   # The priority is based upon order of creation:
   # first created -> highest priority.

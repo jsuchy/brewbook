@@ -1,6 +1,6 @@
 require 'dm-core'
 
-module Record
+module Records
   class Hop
     include DataMapper::Resource
 
@@ -9,6 +9,6 @@ module Record
     property :weight, Float, :default => 0
     property :boil_duration, Integer
 
-    belongs_to :recipe, 'Record::Recipe', :key => true
+    belongs_to :recipe, 'Records::Recipe', :key => true
   end
 end

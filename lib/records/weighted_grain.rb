@@ -1,6 +1,6 @@
 require 'dm-core'
 
-module Record
+module Records
   class WeightedGrain
     include DataMapper::Resource
 
@@ -8,6 +8,6 @@ module Record
     property :name, String
     property :weight, Float, :default => 0
 
-    belongs_to :recipe, 'Record::Recipe', :key => true
+    belongs_to :recipe, 'Records::Recipe', :key => true
   end
 end
