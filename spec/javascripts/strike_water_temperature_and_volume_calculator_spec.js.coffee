@@ -1,4 +1,4 @@
-describe "StrikeWaterTemperatureAndColumeCalculator", ->
+describe "StrikeWaterTemperatureAndVolumeCalculator", ->
   calculator = null
   $form = null
   $strikeTemperatureResult = null
