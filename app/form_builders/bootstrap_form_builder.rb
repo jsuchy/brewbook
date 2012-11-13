@@ -1,5 +1,5 @@
 class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
-  delegate :content_tag, :tag, to: :@template
+  delegate :content_tag, :tag, :to => :@template
 
   def text_field(name, *args)
     _field_label(name, *args).to_s.html_safe + super
