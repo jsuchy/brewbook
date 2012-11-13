@@ -7,6 +7,7 @@ module Records
     property :id, Serial
     property :name, String
     property :fermentation_instructions, String
+    property :mash_temp, Float
     property :mash_time, Integer
     property :yeast, String
     property :yeast_amount, String
@@ -14,8 +15,5 @@ module Records
     has n, :hops, 'Records::Hop'
     has n, :grains, 'Records::WeightedGrain'
 
-    def mash_temp
-
-    end
   end
 end
