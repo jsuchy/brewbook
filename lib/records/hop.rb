@@ -1,4 +1,5 @@
 require 'dm-core'
+require 'records/recipe'
 
 module Records
   class Hop

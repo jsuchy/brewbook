@@ -1,4 +1,6 @@
 require 'dm-core'
+require 'records/hop'
+require 'records/weighted_grain'
 
 module Records
   class Recipe
