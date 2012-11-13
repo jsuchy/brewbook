@@ -12,5 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require forms
 //= require calculate
 //= require_self
