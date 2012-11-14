@@ -1,8 +1,8 @@
 module Interface
-  module Recipe; end
+  module Brew; end
 end
 
-shared_examples_for Interface::Recipe do |host|
+shared_examples_for Interface::Brew do |host|
   [ :id, :name, :grains, :hops, :mash_time, :mash_temp, :yeast, 
     :yeast_amount, :fermentation_instructions ].each do |attr|
     it "responds to #{attr}" do

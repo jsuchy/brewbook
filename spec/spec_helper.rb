@@ -5,10 +5,6 @@ SimpleCov.start 'rails'
 ENV["RAILS_ENV"] ||= 'test'
 require 'rspec/autorun'
 
-require 'dm-core'
-require 'dm-migrations'
-DataMapper.setup(:default, 'sqlite::memory:')
-
 APP_ROOT = File.expand_path(File.join(File.dirname(__FILE__), ".."))
 
 $: << APP_ROOT+"/lib"

@@ -3,7 +3,7 @@ module Interface
 end
 
 shared_examples_for Interface::Hop do |host|
-  [:id, :name, :weight, :boil_duration, :recipe].each do |attr|
+  [:id, :name, :weight, :boil_duration, :brew].each do |attr|
     it "responds to #{attr}" do
       host.should respond_to(attr)
     end

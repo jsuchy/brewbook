@@ -9,3 +9,5 @@ end
 After do
   repository(:default).adapter.pop_transaction.rollback
 end
+
+DataMapper.auto_migrate!

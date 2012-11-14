@@ -1,14 +1,13 @@
 require 'spec_helper'
 require 'rails_helper'
-require 'records/recipe'
 
 describe ApplicationHelper do
   describe "#link_to_add_fields" do
     before do
-      stub_template "recipes/_grain_fields.html.erb" => "Hello!"
+      stub_template "brews/_grain_fields.html.erb" => "Hello!"
 
-      recipe = Records::Recipe.new
-      f = ActionView::Helpers::FormBuilder.new(:recipe, recipe, self, {}, nil)
+      brew = Brew.new
+      f = ActionView::Helpers::FormBuilder.new(:brew, brew, self, {}, nil)
 
       @link = Nokogiri.parse(helper.link_to_add_fields("Add Grain", f, :grains)).child
     end
@@ -28,8 +27,8 @@ describe ApplicationHelper do
 
   describe "#bootstrap_form_for" do
     before do
-      recipe = Records::Recipe.new
-      html = helper.bootstrap_form_for(recipe, :as => :recipe, :url => helper.recipes_path) do |f|
+      brew = Brew.new
+      html = helper.bootstrap_form_for(brew, :as => :brew, :url => helper.brews_path) do |f|
         f.text_field :name
       end
       @result = Nokogiri.parse(html)
@@ -50,7 +49,7 @@ describe ApplicationHelper do
       end
 
       it "has a 'for' attribute for the text field" do
-        expect(@label.attr('for')).to eq("recipe_name")
+        expect(@label.attr('for')).to eq("brew_name")
       end
     end
 
@@ -59,12 +58,12 @@ describe ApplicationHelper do
         @field = @result.css("input[type='text']").first
       end
 
-      it "has a 'name' attribute of 'recipe[name]'" do
-        expect(@field.attr('name')).to eq("recipe[name]")
+      it "has a 'name' attribute of 'brew[name]'" do
+        expect(@field.attr('name')).to eq("brew[name]")
       end
 
-      it "has an 'id' attribute of 'recipe_name'" do
-        expect(@field.attr('id')).to eq("recipe_name")
+      it "has an 'id' attribute of 'brew_name'" do
+        expect(@field.attr('id')).to eq("brew_name")
       end
     end
   end
