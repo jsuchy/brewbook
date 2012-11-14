@@ -1,3 +1,5 @@
+require 'dm-core'
+
 class WeightedGrain
   include DataMapper::Resource
 

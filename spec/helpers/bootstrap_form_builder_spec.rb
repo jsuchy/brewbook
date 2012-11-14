@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'rails_helper'
 
 shared_examples "should generate a label and an input" do
   it "should generate a label and an input" do

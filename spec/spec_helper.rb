@@ -5,14 +5,14 @@ SimpleCov.start 'rails'
 ENV["RAILS_ENV"] ||= 'test'
 require 'rspec/autorun'
 
-APP_ROOT = File.expand_path(File.join(File.dirname(__FILE__), ".."))
+require File.expand_path("../../config/environment", __FILE__)
 
-$: << APP_ROOT+"/lib"
+require 'rspec/rails'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 require 'support/mocks/base'
-Dir[APP_ROOT+"/spec/support/**/*.rb"].each {|f| require f}
+Dir[Rails.root+"spec/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
   config.before(:suite) { DataMapper.auto_migrate! }

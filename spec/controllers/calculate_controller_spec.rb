@@ -1,6 +1,4 @@
 require 'spec_helper'
-require 'rails_helper'
-require 'calculate_controller'
 
 describe CalculateController do
   let(:controller) { CalculateController.new }

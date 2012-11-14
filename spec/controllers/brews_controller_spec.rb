@@ -1,6 +1,4 @@
 require 'spec_helper'
-require 'rails_helper'
-require 'brews_controller'
 
 describe BrewsController do
   describe "#new" do
