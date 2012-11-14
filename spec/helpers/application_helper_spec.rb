@@ -5,7 +5,7 @@ describe ApplicationHelper do
     before do
       stub_template "brews/_grain_fields.html.erb" => "Hello!"
 
-      brew = Brew.new
+      brew = Records::Brew.new
       f = ActionView::Helpers::FormBuilder.new(:brew, brew, self, {}, nil)
 
       @link = Nokogiri.parse(helper.link_to_add_fields("Add Grain", f, :grains)).child
@@ -26,7 +26,7 @@ describe ApplicationHelper do
 
   describe "#bootstrap_form_for" do
     before do
-      brew = Brew.new
+      brew = Records::Brew.new
       html = helper.bootstrap_form_for(brew, :as => :brew, :url => helper.brews_path) do |f|
         f.text_field :name
       end

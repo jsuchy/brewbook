@@ -1,5 +1,5 @@
 class BrewsController < ApplicationController
   def new
-    @brew = Brew.new
+    @brew = Records::Brew.new
   end
 end

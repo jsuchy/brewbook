@@ -17,6 +17,18 @@ Dir[Rails.root+"spec/support/**/*.rb"].each {|f| require f}
 RSpec.configure do |config|
   config.before(:suite) { DataMapper.auto_migrate! }
 
+  config.before(:each) do
+    repository(:default) do |repository|
+      transaction = DataMapper::Transaction.new(repository)
+      transaction.begin
+      repository.adapter.push_transaction(transaction)
+    end
+  end
+
+  config.after(:each) do
+    repository(:default).adapter.pop_transaction.rollback
+  end
+
   # Run specs in random order to surface order dependencies. If you find an
   # order dependency and want to debug it, you can fix the order by providing
   # the seed, which is printed after each run.
