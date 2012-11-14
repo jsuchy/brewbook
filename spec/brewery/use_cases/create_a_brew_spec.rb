@@ -19,7 +19,7 @@ describe Brewery::UseCase::CreateABrew do
     let(:pre_boil_gravity) { "1.042" }
     let(:original_gravity) { "1.066" }
     let(:final_gravity)    { "1.011" }
-    let(:created_at)       { Time.new(2012) }
+    let(:created_at)       { Time.now.midnight }
 
     let(:default_options) do
       {
