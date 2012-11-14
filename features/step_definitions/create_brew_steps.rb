@@ -66,7 +66,7 @@ Given /^a carbonation volume of "(.*?)"$/ do |volume|
 end
 
 When /^I save the brew$/ do
-  @brew = Brewery::UseCase::CreateABrew.new(
+  @brew = Brewery::UseCase::CreateABrew.new({
     :name => @name,
     :grains => @grains,
     :hops => @hops,
@@ -80,7 +80,7 @@ When /^I save the brew$/ do
     :original_gravity => @original_gravity,
     :final_gravity => @final_gravity,
     :created_at => @created_at,
-  ).execute
+  }).execute
 end
 
 Then /^my list of brews will contain the created brew$/ do
