@@ -2,9 +2,11 @@ module Mocks
   class Base
     def self.attributes(*attrs)
       attrs.each do |attr|
-        define_method(attr) do
-          @attrs[attr] || raise("Called: #{attr}, when #{attr} was not set")
+        class_eval(<<-RUBY)
+        def #{attr}
+          @attrs[#{attr.inspect}] || raise("Called: #{attr}, when #{attr} was not set")
         end
+        RUBY
       end
     end
 
