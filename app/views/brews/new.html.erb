@@ -1,11 +1,11 @@
 <h2>New Brew</h2>
 
-<%= bootstrap_form_for @brew, :url => recipes_path, :as => :recipe do |f| %>
+<%= bootstrap_form_for @brew, :url => brews_path, :as => :brew do |f| %>
   <fieldset>
     <%= f.text_field :name %>
 
     <h3>Add Grains</h3>
-    <%= f.fields_for :grains do |builder| %>
+    <%= f.fields_for :grains, :index => "1" do |builder| %>
       <%= render "grain_fields", :f => builder %>
     <% end %>
     <p><%= link_to_add_fields "Add Grain", f, :grains %></p>
@@ -13,14 +13,18 @@
     <%= f.number_field :mash_time, :addon => "mins" %>
 
     <h3>Add Hops</h3>
-    <%= f.fields_for :hops do |builder| %>
+    <%= f.fields_for :hops, :index => "1" do |builder| %>
       <%= render "hop_fields", :f => builder %>
     <% end %>
     <p><%= link_to_add_fields "Add Hops", f, :hops %></p>
 
     <%= f.text_field :yeast %>
     <%= f.text_field :yeast_amount %>
-    <%= f.text_area :fermentation_instructions, :rows => 4 %>
+    <%= f.number_field :fermentation_temperature, :addon => "&deg;F" %>
+    <%= f.text_field :fermentation_duration %>
+    <%= f.number_field :pre_boil_gravity, :step => "0.001", :addon => "IBU" %>
+    <%= f.number_field :original_gravity, :step => "0.001", :addon => "IBU" %>
+    <%= f.number_field :final_gravity, :step => "0.001", :addon => "IBU" %>
     <br/>
     <%= f.button %>
   </fieldset>

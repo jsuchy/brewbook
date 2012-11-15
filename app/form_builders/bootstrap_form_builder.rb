@@ -16,8 +16,8 @@ class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def number_field(method, options = {})
-    options[:step] = "0.1"
-    options[:min] = "0"
+    options[:step] ||= "0.1"
+    options[:min] ||= "0"
     options[:class] ||= "input-small"
 
     input = super(method, options)
@@ -34,7 +34,7 @@ class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def button(text=nil)
-    msg = text || object.new? ? "Save" : "Update"
+    msg = text || "Save"
     content_tag(:button, msg, :class => "btn", :type => "submit")
   end
 

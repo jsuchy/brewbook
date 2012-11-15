@@ -1,9 +1,8 @@
 module ApplicationHelper
   def link_to_add_fields(name, f, association)
-    new_object = f.object.send(association).relationship.child_model.new
-    id = new_object.object_id
+    id = Time.now.object_id
     path = f.object.class.to_s.demodulize.tableize + "/" + association.to_s.singularize + "_fields"
-    fields = f.fields_for(association, new_object, :child_index => id) do |builder|
+    fields = f.fields_for(association, nil, :index => id) do |builder|
       render(path, :f => builder)
     end
     link_to(name, '#', :class => "add_fields", :data => {:id => id, :fields => fields.gsub("\n", "")})
