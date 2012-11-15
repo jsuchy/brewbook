@@ -3,14 +3,5 @@ module Interface
 end
 
 shared_examples_for Interface::Hop do |host|
-  [:id, :name, :weight, :boil_duration, :brew].each do |attr|
-    it "responds to #{attr}" do
-      host.should respond_to(attr)
-    end
-  end
-  it "has a decimal as a weight" do
-    lambda {
-      Float(host.weight)
-    }.should_not raise_error
-  end
+  has_properties host, :name, :weight, :boil_duration
 end

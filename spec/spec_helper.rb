@@ -14,7 +14,19 @@ require 'rspec/rails'
 require 'support/mocks/base'
 Dir[Rails.root+"spec/support/**/*.rb"].each {|f| require f}
 
+module Helpers
+  def has_properties(host, *props)
+    props.each do |attr|
+      it "has the propery #{attr}" do
+        host.should respond_to(attr)
+        host.method(attr).arity.should == 0
+      end
+    end
+  end
+end
+
 RSpec.configure do |config|
+  config.extend Helpers
   config.before(:suite) { DataMapper.auto_migrate! }
 
   config.before(:each) do

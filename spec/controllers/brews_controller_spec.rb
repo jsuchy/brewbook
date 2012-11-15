@@ -7,9 +7,9 @@ describe BrewsController do
       expect(response).to render_template(:new)
     end
 
-    it "asigns a new recipe variable" do
+    it "asigns a new brew variable" do
       get :new
-      expect(assigns(:brew)).to be_new
+      expect(assigns(:brew)).to_not be_nil
     end
   end
 end

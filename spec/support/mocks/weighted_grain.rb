@@ -1,5 +1,5 @@
 module Mocks
   class WeightedGrain < Mocks::Base
-    attributes :id, :name, :weight, :brew
+    attributes :name, :pounds, :ounces, :weight
   end
 end
