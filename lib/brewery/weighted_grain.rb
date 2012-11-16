@@ -9,7 +9,7 @@ module Brewery
     new(
       params[:name],
       Float(params[:pounds]),
-      Float(params[:ounces]),
+      Float(params[:ounces])
     )
   end
 end
