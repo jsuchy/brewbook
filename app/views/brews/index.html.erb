@@ -1,0 +1,15 @@
+<div class="brews page">
+  <h2>All Brews</h2>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Brew Name</th>
+        <th>Brew Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render :partial => 'brew', :collection => @brews %>
+    </tbody>
+  </table>
+</div>

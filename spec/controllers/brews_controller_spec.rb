@@ -1,6 +1,17 @@
 require 'spec_helper'
 
 describe BrewsController do
+  describe "#index" do
+    it "displays the :index template" do
+      get :index
+      expect(response).to render_template(:index)
+    end
+
+    it "assigns the brews variable" do
+      get :index
+      expect(assigns(:brews).size).to eq(Records::Brew.count)
+    end
+  end
   describe "#new" do
     it "displays the :new template" do
       get :new

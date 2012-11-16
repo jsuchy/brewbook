@@ -2,8 +2,13 @@ require 'brewery/brew'
 require 'brewery/hop'
 require 'brewery/weighted_grain'
 require 'brewery/use_cases/create_a_brew'
+require 'brewery/use_cases/retrieve_list_of_brews'
 
 class BrewsController < ApplicationController
+  def index
+    @brews = Brewery::UseCase::RetrieveListOfBrews.new.execute
+  end
+
   def new
     @brew = Brewery::Brew.new
   end

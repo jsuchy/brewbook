@@ -66,7 +66,7 @@ describe Brewery::UseCase::CreateABrew do
       end
 
       describe "the side effects" do
-        before(:all) do
+        before do
           use_case.execute
         end
         it "creates a Brew Record" do
