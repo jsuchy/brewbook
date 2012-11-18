@@ -1,7 +1,10 @@
 Brewery::Application.routes.draw do
-  resources :brews, :only => [:index, :new, :create]
+  resources :brews, :only => [:index, :show, :new, :create]
+
+  match "mash_calculator" => "calculate#show"
   match "calculate/strike_water_temperature_and_volume" => 'calculate#strike_water_temperature_and_volume'
-  root :to => "calculate#show"
+
+  root :to => "brews#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

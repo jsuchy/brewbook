@@ -12,6 +12,33 @@ describe BrewsController do
       expect(assigns(:brews).size).to eq(Records::Brew.count)
     end
   end
+
+  describe "#show" do
+    before do
+      Records::Brew.new.save
+    end
+
+    it "displays the :show template" do
+      get :show, :id => 1
+      expect(response).to render_template(:show)
+    end
+
+    it "assigns the hops variable" do
+      get :show, :id => 1
+      expect(assigns(:hops).size).to eq(0)
+    end
+
+    it "assigns the grains variable" do
+      get :show, :id => 1
+      expect(assigns(:grains).size).to eq(0)
+    end
+
+    it "assigns the brew variable" do
+      get :show, :id => 1
+      expect(assigns(:brew).id).to eq(1)
+    end
+  end
+
   describe "#new" do
     it "displays the :new template" do
       get :new

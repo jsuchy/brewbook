@@ -1,9 +1,17 @@
 require 'new_brew_form'
+require 'brewery/use_cases/retrieve_a_brew'
 require 'brewery/use_cases/retrieve_list_of_brews'
 
 class BrewsController < ApplicationController
   def index
     @brews = Brewery::UseCase::RetrieveListOfBrews.new.execute
+  end
+
+  def show
+    results = Brewery::UseCase::RetrieveABrew.new(params[:id]).execute
+    @brew = results[:brew]
+    @grains = results[:grains]
+    @hops = results[:hops]
   end
 
   def new

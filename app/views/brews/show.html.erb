@@ -1,0 +1,51 @@
+<div class="brew page">
+  <h2><%= @brew.name %></h2>
+
+  <section class="grains">
+    <h3><u>Grains</u></h3>
+    <table class="table">
+      <% @grains.each do |grain| %>
+        <tr>
+          <th><%= grain.name %></th>
+          <td><%= grain.weight %> LB</td>
+        </tr>
+      <% end %>
+    </table>
+  </section>
+
+  <section class="hops">
+    <h3><u>Hops</u></h3>
+    <table class="table">
+      <% @hops.each do |hop| %>
+        <tr>
+          <th><%= hop.name %></th>
+          <td><%= hop.weight %> oz</td>
+          <td><%= hop.boil_duration %> min</td>
+        </tr>
+      <% end %>
+    </table>
+  </section>
+
+  <section class="yeast">
+    <h3><u>Yeast</u></h3>
+    <table class="table">
+      <tr>
+        <td><%= @brew.yeast %></td>
+        <td><%= @brew.yeast_amount %></td>
+      </tr>
+    </table>
+  </section>
+
+  <p>Mash at <%= @brew.mash_temp %>&deg;F for <%= @brew.mash_time %> mins.</p>
+  <p>Ferment at <%= @brew.fermentation_temperature %>&deg;F for <%= @brew.fermentation_duration %> days.</p>
+
+  <dl class="dl-horizontal">
+    <dt>Pre-Boil OG:</dt>
+    <dd><%= @brew.pre_boil_gravity %></dd>
+    <dt>OG:</dt>
+    <dd><%= @brew.original_gravity %></dd>
+    <dt>FG:</dt>
+    <dd><%= @brew.final_gravity %></dd>
+  </dl>
+
+</div>

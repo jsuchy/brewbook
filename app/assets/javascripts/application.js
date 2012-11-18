@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-collapse
 //= require forms
 //= require calculate
 //= require_self

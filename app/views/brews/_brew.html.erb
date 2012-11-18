@@ -1,4 +1,4 @@
 <tr>
-  <td><%= brew.name %></td>
+  <td><%= link_to brew.name, brew_path(brew.id) %></td>
   <td><%= brew.created_at.to_s(:short) %></td>
 </tr>
