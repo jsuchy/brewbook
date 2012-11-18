@@ -29,9 +29,6 @@ describe "BootstrapFormBuilder" do
   end
 
   describe "#check_box" do
-    before do
-      builder.object.stub(:isTrue => true)
-    end
     let(:generated) { Nokogiri::HTML(builder.check_box(:isTrue)) }
     
     include_examples "should generate a label and an input"

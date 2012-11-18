@@ -1,10 +1,12 @@
 module Brewery
-  Brew = Struct.new(:name, :mash_temp, :mash_time, 
+  Brew = Struct.new(:id, :name, :mash_temp, :mash_time, 
                     :yeast, :yeast_amount, :fermentation_temperature,
                     :fermentation_duration, :original_gravity,
                     :pre_boil_gravity, :final_gravity, :created_at)
+
   def Brew.from_params(params)
     new(
+      params[:id],
       params[:name],
       params[:mash_temp],
       params[:mash_time],

@@ -5,12 +5,12 @@ describe Brewery::WeightedGrain do
   describe ".from_params" do
     it "assigns its properties correctly" do
       grain = Brewery::WeightedGrain.from_params(
-        {:name => "Grain", :pounds => "3", :ounces => "4"}
+        {:name => "Grain", :pounds => 3, :ounces => 4}
       )
 
       expect(grain.name).to eq("Grain")
-      expect(grain.pounds).to eq(3.0)
-      expect(grain.ounces).to eq(4.0)
+      expect(grain.pounds).to eq(3)
+      expect(grain.ounces).to eq(4)
     end
   end
 

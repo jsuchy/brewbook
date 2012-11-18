@@ -30,8 +30,8 @@ describe BrewsController do
       { 
         :brew => {
           :name => "Eric",
-          :grains => {"1" => {:name => "Grain", :pounds => "1", :ounces => "3"} },
-          :hops => {"1" => hop },
+          :grains_attributes => {"1" => {:name => "Grain", :pounds => "1", :ounces => "3"} },
+          :hops_attributes => {"1" => hop },
           :mash_temp => "155",
           :mash_time => "60",
           :yeast => "American Yeast",
@@ -77,9 +77,29 @@ describe BrewsController do
     context "with more than 1 hop" do
       it "saves more than one" do
         lambda {
-          post :create, good_params.deep_merge({:brew => {:hops => {"1" => hop, "2" => hop, "3" => hop }}})
+          post :create, good_params.deep_merge({:brew => {:hops_attributes => {"1" => hop, "2" => hop, "3" => hop }}})
         }.should change(Records::Hop, :count)
         expect(Records::Hop.count).to eq(3)
+      end
+    end
+
+    context "with a blank name" do
+      let(:bad_params) { good_params.deep_merge({:brew => {:name => ""}}) }
+
+      it "does not create a brew record" do
+        lambda {
+          post :create, bad_params
+        }.should_not change(Records::Brew, :count)
+      end
+
+      it "renders the new template" do
+        post :create, bad_params
+        expect(response).to render_template(:new)
+      end
+
+      it "assigns brew" do
+        post :create, bad_params
+        expect(assigns(:brew)).to_not be_nil
       end
     end
   end

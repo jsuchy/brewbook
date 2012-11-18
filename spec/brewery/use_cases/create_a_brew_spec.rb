@@ -42,25 +42,33 @@ describe Brewery::UseCase::CreateABrew do
     context "with proper values" do
       let(:use_case) { Brewery::UseCase::CreateABrew.new(default_options) }
 
-      describe "the result" do
-        let(:result) { use_case.execute }
+      describe "the result hash" do
+        let(:result_hash) { use_case.execute }
 
-        [:name, :yeast, :yeast_amount, :created_at].each do |attr|
-          it "has the correct #{attr}" do
-            expect(result.send(attr)).to eq(self.send(attr))
-          end
+        it "is valid" do
+          expect(result_hash[:valid]).to be_true
         end
 
-        [:mash_time, :fermentation_duration].each do |attr|
-          it "has the correct #{attr}" do
-            expect(result.send(attr)).to eq(Integer(self.send(attr)))
-          end
-        end
+        describe "brew attribute" do
+          let(:brew) { result_hash[:brew] }
 
-        [:mash_temp, :fermentation_temperature, :pre_boil_gravity,
-         :original_gravity, :final_gravity].each do |attr|
-          it "has the correct #{attr}" do
-            expect(result.send(attr)).to eq(Float(self.send(attr)))
+          [:name, :yeast, :yeast_amount, :created_at].each do |attr|
+            it "has the correct #{attr}" do
+              expect(brew.send(attr)).to eq(self.send(attr))
+            end
+          end
+
+          [:mash_time, :fermentation_duration].each do |attr|
+            it "has the correct #{attr}" do
+              expect(brew.send(attr)).to eq(Integer(self.send(attr)))
+            end
+          end
+
+          [:mash_temp, :fermentation_temperature, :pre_boil_gravity,
+           :original_gravity, :final_gravity].each do |attr|
+            it "has the correct #{attr}" do
+              expect(brew.send(attr)).to eq(Float(self.send(attr)))
+            end
           end
         end
       end

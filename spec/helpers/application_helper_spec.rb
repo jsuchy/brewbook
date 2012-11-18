@@ -3,6 +3,7 @@ require 'spec_helper'
 describe ApplicationHelper do
   describe "#link_to_add_fields" do
     before do
+      view.lookup_context.prefixes << "brews"
       stub_template "brews/_grain_fields.html.erb" => "Hello!"
 
       brew = Records::Brew.new

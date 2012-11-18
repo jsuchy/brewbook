@@ -8,8 +8,8 @@ module Brewery
   def WeightedGrain.from_params(params)
     new(
       params[:name],
-      Float(params[:pounds]),
-      Float(params[:ounces])
+      params[:pounds],
+      params[:ounces]
     )
   end
 end

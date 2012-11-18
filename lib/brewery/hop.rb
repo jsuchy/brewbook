@@ -4,8 +4,8 @@ module Brewery
   def Hop.from_params(params)
     new(
       params[:name], 
-      Float(params[:weight]), 
-      Integer(params[:boil_duration])
+      params[:weight], 
+      params[:boil_duration]
     )
   end
 end

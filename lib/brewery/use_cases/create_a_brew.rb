@@ -1,19 +1,20 @@
+require 'ostruct'
+
 module Brewery
   module UseCase
     class CreateABrew
       def initialize(hash)
-        @options = hash
+        @brew_hash = hash
+        @grains = @brew_hash.delete(:grains) { [] }
+        @hops = @brew_hash.delete(:hops) { [] }
       end
 
       def execute
-        grains = @options.delete(:grains) { [] }
-        hops = @options.delete(:hops) { [] }
+        brew = _save_brew(@brew_hash)
+        _save_grains(@grains, brew)
+        _save_hops(@hops, brew)
 
-        brew = _save_brew(@options)
-        _save_grains(grains, brew)
-        _save_hops(hops, brew)
-
-        brew
+        {:valid => true, :brew => brew}
       end
 
       private

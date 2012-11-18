@@ -64,5 +64,9 @@ module Brewery
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
   end
+  ActionView::Base.field_error_proc = Proc.new { |html_tag, instance| 
+    "#{html_tag}".html_safe 
+  }
 end
