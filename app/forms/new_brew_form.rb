@@ -62,9 +62,9 @@ module Forms
 
     def to_brewery
       [:name, :mash_temp, :mash_time, :yeast, :yeast_amount, :fermentation_duration,
-       :fermentation_temperature, :pre_boil_gravity, :original_gravity, :final_gravity]
-      .reduce({}) { |acc, attr| acc[attr] = self.send(attr); acc }
-      .merge({
+       :fermentation_temperature, :pre_boil_gravity, :original_gravity, :final_gravity].
+      reduce({}) { |acc, attr| acc[attr] = self.send(attr); acc }.
+      merge({
         :grains => grains.map(&:to_brewery), 
         :hops => hops.map(&:to_brewery)
       })

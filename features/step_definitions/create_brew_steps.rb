@@ -80,7 +80,7 @@ When /^I save the brew$/ do
     :original_gravity => @original_gravity,
     :final_gravity => @final_gravity,
     :created_at => @created_at,
-  }).execute
+  }).execute[:brew]
 end
 
 Then /^my list of brews will contain the created brew$/ do
