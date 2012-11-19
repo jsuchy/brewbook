@@ -18,6 +18,10 @@ gem 'jquery-rails'
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 
+group :production do
+  gem 'dm-postgres-adapter'
+end
+
 group :test, :development do
   gem 'dm-sqlite-adapter'
   gem 'cucumber-rails', :require => false
